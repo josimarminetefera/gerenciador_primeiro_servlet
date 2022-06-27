@@ -29,13 +29,18 @@ public class Banco {
 		return Banco.lista;
 	}
 
+	// No java voce não pode interar e alterar o valor ao mesmo tempo.
+	// Abaixo está a forma certo voce intera primeiro e depois percorre fazendo a
+	// alteração que quer
 	public void removeEmpresa(Integer id) {
 
+		// CRIA UM ITERADOR PARA DEPOIS PERCORRER
 		Iterator<Empresa> it = lista.iterator();
 
+		// PERCORRE CADA ITEM
 		while (it.hasNext()) {
 			Empresa emp = it.next();
-
+			// ENCONTRADO O ID AGORA REMOVE
 			if (emp.getId() == id) {
 				it.remove();
 			}
@@ -47,7 +52,6 @@ public class Banco {
 			if (empresa.getId() == id) {
 				return empresa;
 			}
-
 		}
 		return null;
 	}

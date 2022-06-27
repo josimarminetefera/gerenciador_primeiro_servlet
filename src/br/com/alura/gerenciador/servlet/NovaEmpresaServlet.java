@@ -15,16 +15,16 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/novaEmpresa")
 public class NovaEmpresaServlet extends HttpServlet {
-	
+
 	private static final long serialVersionUID = 1L;
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("Cadastrando nova empresa");
-		
+
 		String nomeEmpresa = request.getParameter("nome");
 		String paramDataEmpresa = request.getParameter("data");
-		
+
 		Date dataAbertura = null;
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -32,20 +32,20 @@ public class NovaEmpresaServlet extends HttpServlet {
 		} catch (ParseException e) {
 			throw new ServletException(e);
 		}
-		
+
 		Empresa empresa = new Empresa();
 		empresa.setNome(nomeEmpresa);
 		empresa.setDataAbertura(dataAbertura);
-		
+
 		Banco banco = new Banco();
 		banco.adiciona(empresa);
-		
-		//chamar o JPS
-		//RequestDispatcher rd = request.getRequestDispatcher("/listaEmpresas");
-		//request.setAttribute("empresa", empresa.getNome());
-		//rd.forward(request, response);
-		
-		//redirecionamento do lado do cliente
+
+		// chamar o JPS
+		// RequestDispatcher rd = request.getRequestDispatcher("/listaEmpresas");
+		// request.setAttribute("empresa", empresa.getNome());
+		// rd.forward(request, response);
+
+		// redirecionamento do lado do cliente
 		response.sendRedirect("listaEmpresas");
 	}
 

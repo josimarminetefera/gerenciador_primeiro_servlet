@@ -17,14 +17,18 @@ public class RemoveEmpresaServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// BUSCAR O PARAMETRO
 		String paramId = request.getParameter("id");
 		Integer id = Integer.valueOf(paramId);
 
 		System.out.println(id);
-		
+
+		// CONECTAR AO BANCO
 		Banco banco = new Banco();
+		// REMOVER
 		banco.removeEmpresa(id);
 
+		// REDIRECIONAR PARA O CONTROLLER DE LISTAR
 		response.sendRedirect("listaEmpresas");
 	}
 

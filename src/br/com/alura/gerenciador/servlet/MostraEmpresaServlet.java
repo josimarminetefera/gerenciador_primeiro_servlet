@@ -19,18 +19,21 @@ public class MostraEmpresaServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// BUSCA O PARAMETRO
 		String paramId = request.getParameter("id");
-        Integer id = Integer.valueOf(paramId);
+		Integer id = Integer.valueOf(paramId);
 
-        Banco banco = new Banco();
+		Banco banco = new Banco();
+		// BUSCA A EMPRESA PELO ID PASSADO
+		Empresa empresa = banco.buscaEmpresaPelaId(id);
 
-        Empresa empresa = banco.buscaEmpresaPelaId(id);
+		System.out.println(empresa.getNome());
 
-        System.out.println(empresa.getNome());
+		// CRIA O PARAMETRO
+		request.setAttribute("empresa", empresa);
 
-        request.setAttribute("empresa", empresa);
-
-        RequestDispatcher rd = request.getRequestDispatcher("/formAlteraEmpresa.jsp");
-        rd.forward(request, response);
+		// DISPARA PARA A PAGINA DE ALTERAÇÃO
+		RequestDispatcher rd = request.getRequestDispatcher("/formAlteraEmpresa.jsp");
+		rd.forward(request, response);
 	}
 }

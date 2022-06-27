@@ -13,17 +13,20 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/listaEmpresas")
 public class ListaEmpresasServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	protected void service(HttpServletRequest request, HttpServletResponse response) 
+
+	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		Banco banco = new Banco();
+		// PEGA A LISTA DE EMPRESAS
 		List<Empresa> lista = banco.getEmpresas();
-		
+
+		// CRIA O PARAMETRO PARA ENVIAR PARA A JSP
 		request.setAttribute("empresas", lista);
-		
+
+		// DISPARA PARA A JSP
 		RequestDispatcher rd = request.getRequestDispatcher("/listaEmpresas.jsp");
 		rd.forward(request, response);
-		
+
 	}
 }
