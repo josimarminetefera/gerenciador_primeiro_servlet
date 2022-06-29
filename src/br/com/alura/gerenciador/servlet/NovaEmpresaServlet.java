@@ -14,7 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.alura.gerenciador.modelo.Banco;
 import br.com.alura.gerenciador.modelo.Empresa;
 
-@WebServlet("/novaEmpresa")
+//Não usado mais pois foi para pacore acao
+//@WebServlet("/novaEmpresa")
 public class NovaEmpresaServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
