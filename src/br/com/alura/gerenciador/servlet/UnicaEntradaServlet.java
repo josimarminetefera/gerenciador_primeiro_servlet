@@ -9,12 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.alura.gerenciador.acao.AlterarEmpresa;
-import br.com.alura.gerenciador.acao.ListarEmpresas;
-import br.com.alura.gerenciador.acao.MostrarEmpresa;
-import br.com.alura.gerenciador.acao.NovaEmpresa;
-import br.com.alura.gerenciador.acao.NovaEmpresaForm;
-import br.com.alura.gerenciador.acao.RemoverEmpresa;
+import br.com.alura.gerenciador.acao.Acao;
 
 @WebServlet("/entrada")
 public class UnicaEntradaServlet extends HttpServlet {
@@ -27,34 +22,15 @@ public class UnicaEntradaServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String acao = request.getParameter("acao");
+		String nomeClass = "br.com.alura.gerenciador.acao." + acao;
+
 		String nome = null;
-		if (acao.equals("ListarEmpresas")) {
-			// http://localhost:8080/gerenciador/entrada?acao=ListarEmpresas
-			System.out.println("ListarEmpresas");
-			ListarEmpresas ac = new ListarEmpresas();
+		try {
+			Class<?> classe = Class.forName(nomeClass);
+			Acao ac = (Acao) classe.newInstance();
 			nome = ac.executa(request, response);
-		} else if (acao.equals("RemoverEmpresa")) {
-			System.out.println("RemoverEmpresa");
-			RemoverEmpresa actoin = new RemoverEmpresa();
-			nome = actoin.executa(request, response);
-		} else if (acao.equals("MostrarEmpresa")) {
-			System.out.println("MostrarEmpresa");
-			MostrarEmpresa actoin = new MostrarEmpresa();
-			nome = actoin.executa(request, response);
-		} else if (acao.equals("AlterarEmpresa")) {
-			System.out.println("AlterarEmpresa");
-			AlterarEmpresa actoin = new AlterarEmpresa();
-			nome = actoin.executa(request, response);
-		} else if (acao.equals("NovaEmpresa")) {
-			// http://localhost:8080/gerenciador/formNovaEmpresa.jsp
-			System.out.println("NovaEmpresa");
-			NovaEmpresa actoin = new NovaEmpresa();
-			nome = actoin.executa(request, response);
-		} else if (acao.equals("NovaEmpresaForm")) {
-			// http://localhost:8080/gerenciador/entrada?acao=NovaEmpresaForm
-			System.out.println("NovaEmpresaForm");
-			NovaEmpresaForm actoin = new NovaEmpresaForm();
-			nome = actoin.executa(request, response);
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+			throw new ServletException(e);
 		}
 
 		String[] endereco = nome.split(":");
@@ -66,6 +42,29 @@ public class UnicaEntradaServlet extends HttpServlet {
 			// REDIRECIONAR PARA O CONTROLLER DE LISTAR
 			response.sendRedirect(endereco[1]);
 		}
+
+		/*
+		 * String nome = null; if (acao.equals("ListarEmpresas")) { //
+		 * http://localhost:8080/gerenciador/entrada?acao=ListarEmpresas
+		 * System.out.println("ListarEmpresas"); ListarEmpresas ac = new
+		 * ListarEmpresas(); nome = ac.executa(request, response); } else if
+		 * (acao.equals("RemoverEmpresa")) { System.out.println("RemoverEmpresa");
+		 * RemoverEmpresa actoin = new RemoverEmpresa(); nome = actoin.executa(request,
+		 * response); } else if (acao.equals("MostrarEmpresa")) {
+		 * System.out.println("MostrarEmpresa"); MostrarEmpresa actoin = new
+		 * MostrarEmpresa(); nome = actoin.executa(request, response); } else if
+		 * (acao.equals("AlterarEmpresa")) { System.out.println("AlterarEmpresa");
+		 * AlterarEmpresa actoin = new AlterarEmpresa(); nome = actoin.executa(request,
+		 * response); } else if (acao.equals("NovaEmpresa")) { //
+		 * http://localhost:8080/gerenciador/formNovaEmpresa.jsp
+		 * System.out.println("NovaEmpresa"); NovaEmpresa actoin = new NovaEmpresa();
+		 * nome = actoin.executa(request, response); } else if
+		 * (acao.equals("NovaEmpresaForm")) { //
+		 * http://localhost:8080/gerenciador/entrada?acao=NovaEmpresaForm
+		 * System.out.println("NovaEmpresaForm"); NovaEmpresaForm actoin = new
+		 * NovaEmpresaForm(); nome = actoin.executa(request, response); }
+		 */
+
 	}
 
 }

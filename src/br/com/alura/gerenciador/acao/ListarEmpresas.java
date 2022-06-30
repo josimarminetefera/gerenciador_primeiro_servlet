@@ -12,7 +12,7 @@ import br.com.alura.gerenciador.modelo.Banco;
 import br.com.alura.gerenciador.modelo.Empresa;
 
 //Esta class não é um servlet e serve para passar por dentro do interceptador.
-public class ListarEmpresas {
+public class ListarEmpresas implements Acao{
 	public String executa(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("---------ListarEmpresas");
