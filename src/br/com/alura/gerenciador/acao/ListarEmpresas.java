@@ -13,7 +13,8 @@ import br.com.alura.gerenciador.modelo.Empresa;
 
 //Esta class não é um servlet e serve para passar por dentro do interceptador.
 public class ListarEmpresas {
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String executa(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		System.out.println("---------ListarEmpresas");
 		Banco banco = new Banco();
 		// PEGA A LISTA DE EMPRESAS
@@ -22,8 +23,6 @@ public class ListarEmpresas {
 		// CRIA O PARAMETRO PARA ENVIAR PARA A JSP
 		request.setAttribute("empresas", lista);
 
-		// DISPARA PARA A JSP
-		RequestDispatcher rd = request.getRequestDispatcher("/listaEmpresas.jsp");
-		rd.forward(request, response);
+		return "foward:listaEmpresas.jsp";
 	}
 }
