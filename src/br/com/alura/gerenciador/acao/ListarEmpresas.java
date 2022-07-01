@@ -23,6 +23,6 @@ public class ListarEmpresas implements Acao{
 		// CRIA O PARAMETRO PARA ENVIAR PARA A JSP
 		request.setAttribute("empresas", lista);
 
-		return "foward:listaEmpresas.jsp";
+		return "forward:listaEmpresas.jsp";
 	}
 }

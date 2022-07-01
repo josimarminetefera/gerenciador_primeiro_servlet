@@ -34,7 +34,7 @@ public class UnicaEntradaServlet extends HttpServlet {
 		}
 
 		String[] endereco = nome.split(":");
-		if (endereco[0].contains("foward")) {
+		if (endereco[0].contains("forward")) {
 			// DISPARA PARA A JSP
 			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/" + endereco[1]);
 			rd.forward(request, response);
@@ -44,6 +44,7 @@ public class UnicaEntradaServlet extends HttpServlet {
 		}
 
 		/*
+		 * http://localhost:8080/gerenciador/entrada?acao=LoginForm
 		 * String nome = null; if (acao.equals("ListarEmpresas")) { //
 		 * http://localhost:8080/gerenciador/entrada?acao=ListarEmpresas
 		 * System.out.println("ListarEmpresas"); ListarEmpresas ac = new
