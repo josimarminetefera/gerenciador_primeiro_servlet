@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 // Cada requisição entra aqui antes 
 // Para definir a ordem de execução de um filter tem que configurar no web xml.
-//@WebFilter(filterName = "entrada", urlPatterns = { "/entrada" })
+// @WebFilter(filterName = "entrada", urlPatterns = { "/entrada" })
 public class AutorizacaoFilter extends HttpFilter implements Filter {
 
 	public AutorizacaoFilter() {

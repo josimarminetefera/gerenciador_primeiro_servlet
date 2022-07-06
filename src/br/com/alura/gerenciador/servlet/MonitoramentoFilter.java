@@ -11,7 +11,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebServlet;
 
 // monitora tempo de execução de cada requisição feita
-//se usar anotação qyuem toma conta do filter é o 
+// se usar anotação qyuem toma conta do filter é o 
 // @WebFilter("/entrada")
 public class MonitoramentoFilter implements Filter {
 
