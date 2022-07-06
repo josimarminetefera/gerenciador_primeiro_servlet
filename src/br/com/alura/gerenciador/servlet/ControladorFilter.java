@@ -31,12 +31,12 @@ public class ControladorFilter extends HttpFilter implements Filter {
 
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain)
 			throws IOException, ServletException {
-		
+
 		System.out.println("ControladorFilter");
-		
+
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
 		HttpServletResponse response = (HttpServletResponse) servletResponse;
-		
+
 		String acao = request.getParameter("acao");
 		String nomeClass = "br.com.alura.gerenciador.acao." + acao;
 
@@ -58,6 +58,8 @@ public class ControladorFilter extends HttpFilter implements Filter {
 			// REDIRECIONAR PARA O CONTROLLER DE LISTAR
 			response.sendRedirect(endereco[1]);
 		}
+
+		// este é o ultimo na cadeia de filtro chain.doFilter(request, response);
 
 		/*
 		 * http://localhost:8080/gerenciador/entrada?acao=ListarEmpresas
@@ -83,7 +85,6 @@ public class ControladorFilter extends HttpFilter implements Filter {
 		 * NovaEmpresaForm(); nome = actoin.executa(request, response); }
 		 */
 
-		
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {
