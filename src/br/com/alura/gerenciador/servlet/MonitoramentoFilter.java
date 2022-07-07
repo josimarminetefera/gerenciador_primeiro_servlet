@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -14,6 +15,13 @@ import javax.servlet.annotation.WebServlet;
 // se usar anotação qyuem toma conta do filter é o 
 // @WebFilter("/entrada")
 public class MonitoramentoFilter implements Filter {
+	@Override
+	public void destroy() {
+	}
+
+	@Override
+	public void init(FilterConfig fConfig) throws ServletException {
+	}
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -33,7 +41,7 @@ public class MonitoramentoFilter implements Filter {
 		long depois = System.currentTimeMillis();
 
 		System.out.println("Tempo: " + (depois - antes) + " / " + acao);
-		
+
 	}
 
 }

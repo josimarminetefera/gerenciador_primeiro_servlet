@@ -16,18 +16,19 @@ import javax.servlet.http.HttpSession;
 // Cada requisição entra aqui antes 
 // Para definir a ordem de execução de um filter tem que configurar no web xml.
 // @WebFilter(filterName = "entrada", urlPatterns = { "/entrada" })
-public class AutorizacaoFilter extends HttpFilter implements Filter {
+public class AutorizacaoFilter implements Filter {
 
 	public AutorizacaoFilter() {
 		super();
 	}
 
+	@Override
 	public void destroy() {
 	}
 
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain)
 			throws IOException, ServletException {
-		
+
 		System.out.println("AutorizacaoFilter");
 
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
@@ -42,13 +43,14 @@ public class AutorizacaoFilter extends HttpFilter implements Filter {
 			System.out.println("------------- NAO AUTORIZADO");
 			response.sendRedirect("entrada?acao=LoginForm");
 			return;
-		}else {
+		} else {
 			System.out.println("------------- AUTORIZADO");
 		}
 
 		chain.doFilter(request, response);
 	}
 
+	@Override
 	public void init(FilterConfig fConfig) throws ServletException {
 	}
 

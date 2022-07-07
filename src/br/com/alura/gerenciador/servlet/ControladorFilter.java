@@ -20,12 +20,13 @@ import br.com.alura.gerenciador.acao.Acao;
 // Para definir a ordem de execução de um filter tem que configurar no web xml.
 // este será o ultimo filtro na cadeia
 // @WebFilter(filterName = "entrada", urlPatterns = { "/entrada" })
-public class ControladorFilter extends HttpFilter implements Filter {
+public class ControladorFilter implements Filter {
 
 	public ControladorFilter() {
 		super();
 	}
 
+	@Override
 	public void destroy() {
 	}
 
@@ -87,6 +88,7 @@ public class ControladorFilter extends HttpFilter implements Filter {
 
 	}
 
+	@Override
 	public void init(FilterConfig fConfig) throws ServletException {
 	}
 
